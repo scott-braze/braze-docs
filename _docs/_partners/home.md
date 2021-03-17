@@ -2,7 +2,7 @@
 page_order: 0
 alias: /partners/Partners/
 layout: partner_page
-partner_api: "https://www.braze.com/api/v1/partners.json"
+partner_api: "https://www.braze.com/api/v1/partners"
 partner_path: "https://www.braze.com/product/alloys/partners/"
 partner_top_header: "Technology Partners"
 partner_top_text: "Welcome to our list of Alloys (our allies - our best buds - our partners)! Use it to explore the technical documentation that will help implement Technology Partners into your Braze SDK. <br> <br>  If you're looking for information on joining our Firebrands, a community of movers and shakers using Braze to modernize their customer experience and marketing, check out our information page <a href='https://brazefirebrands.splashthat.com/'>here</a>."
@@ -64,12 +64,6 @@ valid_partner_list:
   url: /docs/partners/channel_extensions/creative_and_personalization/email_orchestration/stensul/
 - name: Segment
   url: /docs/partners/data_and_infrastructure_agility/customer_data_platform/segment/
-  alt:
-    - title: Currents
-      url: /docs/partners/data_and_infrastructure_agility/customer_data_platform/segment_for_currents/
-  alt:
-    - title: Personas
-      url: /docs/partners/data_and_infrastructure_agility/customer_data_platform/segment_personas/
 - name: Branch
   title: Deeplinking
   url: /docs/partners/channel_extensions/deep_linking/branch_for_deeplinking/
@@ -82,9 +76,6 @@ valid_partner_list:
   url: /docs/partners/additional_channels/sms/twilio/
 - name: mParticle
   url: /docs/partners/data_and_infrastructure_agility/customer_data_platform/mparticle/
-  alt:
-    - title: Currents
-      url: /docs/partners/data_and_infrastructure_agility/customer_data_platform/mparticle_for_currents/
 - name: Microsoft Azure
   title: Currents
   url: /docs/partners/data_and_infrastructure_agility/data_warehouses/microsoft_azure_blob_storage_for_currents/
@@ -112,9 +103,9 @@ valid_partner_list:
 - name: Voucherify
   url: /docs/partners/channel_extensions/loyalty/voucherify/
 - name: Movable Ink
-  url: /docs/partners/channel_extensions/creative_and_personalization/intelligent_creative/movable_ink/
+  url: /docs/partners/channel_extensions/creative_and_personalization/intelligent_content/movable_ink/
 - name: Jebbit
-  url: /docs/partners/data_and_infrastructure_agility/customer_data_platform/jebbit/
+  url: /docs/partners/channel_extensions/loyalty/jebbit/
 - name: Iterate
   url: /docs/partners/additional_channels/surveys/iterate/
 - name: Bluedot
@@ -125,11 +116,17 @@ valid_partner_list:
   url: /docs/partners/channel_extensions/deep_linking/vizbee_for_tv_deeplinking/
 - name: RudderStack
   url: /docs/partners/data_and_infrastructure_agility/customer_data_platform/rudderstack/
-- name: Dyspatch
+- name: Dyspatch.io
   url: /docs/partners/channel_extensions/creative_and_personalization/email_orchestration/dyspatch/
 - name: Pypestream
   url: /docs/partners/advertising_technologies/attribution/pypestream/
 - name: EduMe
   url: /docs/partners/channel_extensions/learning/edume/
+- name: Playable
+  url: /docs/partners/channel_extensions/creative_and_personalization/intelligent_content/playable/
+- name: Zendesk
+  url: /docs/partners/channel_extensions/support/zendesk/
+- name: Crowdin
+  url: /docs/partners/channel_extensions/localization/crowdin/
 
 ---

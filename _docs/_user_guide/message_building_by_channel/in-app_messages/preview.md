@@ -11,7 +11,7 @@ description: "This reference article covers the new in-app messaging HTML Previe
 Learn about the new Preview features for custom HTML In-App Messages.
 
 {% alert important %}
-This feature is in *Early Access*. Ask your Braze account team to get access!
+This is an opt-in feature. Ask your Braze account team to get access today!
 {% endalert %}
 
 ## New Features
@@ -49,6 +49,7 @@ We've also added the ability to upload newly supported file types, including:
 | SVG Images| `.svg`|
 | Javascript Files| `.js`|
 | CSS Files| `.css`|
+{: .reset-td-br-1 .reset-td-br-2}
 
 {% alert tip %}
 Using Braze's Media Library CDN to host assets will ensure your messages are displayed on mobile devices even if a user has a poor internet connection or offline.
@@ -75,10 +76,6 @@ For example, to close a message and log Button 2 click, you can use:
 ```
 
 You can also track new custom button names - up to 100 unique names per campaign, for example `appboyBridge.logClick("blue button")` or `appboyBridge.logClick("viewed carousel page 3")`.
-
-{% alert important %}
-Note: Custom button IDs is not enabled by default and must be enabled for your account by Braze.
-{% endalert %}
 
 #### Requirements
 

@@ -8,16 +8,12 @@ description: "This page outlines what Data Points are at Braze and how you can b
 # Data Points
 
 At Braze, data means action: each piece of data that arrives in Braze updates segment membership, can trigger & cancel messaging, is immediately available for messaging personalization, and more. As such, data points are Braze’s way of defining a billing and pricing structure, based on pieces of information logged against user profiles. See [Consumption Count](#consumption-count) below to see what data counts toward your data point allocation.
-
+ 
 Our Customer Success team can help recommend data best practices to fit your specific needs. You can find a more detailed breakdown of this definition in your Braze contract.
-
-{% alert important %}
-This pricing structure only applies to customers using in-app or in-browser messages, push, Content Cards, webhooks, and email services.
-{% endalert %}
 
 ## Management & Usage
 
-You can view your Data Points Usage on the __Subscriptions and Usage__ section in any of the tabs. Just go to your name in the top-right corner, click the drop down, and select __Subscriptions and Usage__.
+To view your Data Point Dashboard, select your name in the top-right corner, click the drop down, and select __Subscriptions and Usage__. For more information on the Data Point Dashboard components, check out our subscription and billing [article]({{site.baseurl}}/user_guide/onboarding_with_braze/subscription_and_billing/). 
 
 {% alert tip %}
 __Only update your deltas (changing data)!__
@@ -71,6 +67,7 @@ __Please note that:__<br>
 |Purchases | All Purchases | Yes |
 |Amplitude Cohort Assignment | All Assignments | Yes |
 |Mixpanel Cohort Assignment | All Assignments | Yes |
+{: .reset-td-br-1 .reset-td-br-2 .reset-td-br-3}
 
   {% endtab %}
 {% tab Location %}
@@ -80,6 +77,7 @@ __Please note that:__<br>
 |Data Type | Data Point | Does it count towards consumption? |
 |---|---|---|
 |Most Recent Location | All Most Recent Locations | Yes |
+{: .reset-td-br-1 .reset-td-br-2 .reset-td-br-3}
 
   {% endtab %}
 {% tab Engagement %}
@@ -106,6 +104,7 @@ __Please note that:__<br>
 |Install Attribution | Ad | No |
 |Miscellaneous | Random Bucket Number | No |
 |Canvas Messages Received | Canvas Messages Received | No |
+{: .reset-td-br-1 .reset-td-br-2 .reset-td-br-3}
 
  {% endtab %}
 {% tab Social %}
@@ -119,6 +118,7 @@ __Please note that:__<br>
 |Twitter | Following | No |
 |Twitter | Number of Tweets | No |
 |Facebook | Likes | No |
+{: .reset-td-br-1 .reset-td-br-2 .reset-td-br-3}
 
  {% endtab %}
 {% endtabs %}

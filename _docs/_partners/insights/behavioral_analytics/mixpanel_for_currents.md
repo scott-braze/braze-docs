@@ -26,7 +26,7 @@ Add this information to the Mixpanel Currents integration page on the dashboard,
 
 A list of the events that can be exported from Braze to Mixpanel is below. All events sent to Mixpanel will include the user's `external_user_id` as the Mixpanel Distinct ID. At this time, Braze does not send event data for users who do not have their `external_user_id` set.
 
-You can export two types of events events to Mixpanel: "Message Engagement Events" consisting of the Braze events that are directly related to message sending, and "Customer Behavior Events" including other App or Website activity such as Sessions, Custom Events, and Purchases tracked through the platform. All Custom Events are prefixed with `[Braze Custom Event]`. Custom Event properties and Purchase Event properties are prefixed with `[Custom event property]` and `[Purchase property]`, respectively.
+You can export two types of events events to Mixpanel: "Message Engagement Events" consisting of the Braze Events that are directly related to message sending, and "Customer Behavior Events" including other App or Website activity such as Sessions, Custom events, and Purchases tracked through the platform. All Custom events are prefixed with `[Braze Custom Event]`. Custom event properties and Purchase event properties are prefixed with `[Custom event property]` and `[Purchase property]`, respectively.
 
 Please contact your Account Manager or [open a support ticket][support] if you need access to additional event entitlements.
 
@@ -287,7 +287,7 @@ _Update noted in August 2019._
   "inbound_phone_number": (string) phone number on which the message was received,
   "subscription_group_id": (string) api id of the subscription group from which this SMS message was received,
   "user_phone_number": (string) the number from which message was sent,
-  "action": (string) the subscription action Braze took as a result of this message (either `subscribed`, `unsubscribed` or `none` based on the message body. `None` indicates this inbound message did not match any of your keywords to opt-in or opt-out a user),  
+  "action": (string) the subscription action Braze took as a result of this message (either `subscribed`, `unsubscribed` or `none` based on the message body. `None` indicates this inbound message did not match any of your keywords to opt-in or opt-out a user),
   "message_body": (string) the text of the message,
 }
 ```
@@ -331,7 +331,7 @@ _Update noted in August 2019._
 }
 // In-App Message Click
 {
-  "button_id": (string) index of the button clicked, if it was a button that was clicked,
+  "button_id": (string) index of the button clicked, if it was a button that was clicked, or tracking ID of the click, if the event came from an appboyBridge.logClick invocation,
   "campaign_id": (string) id of the campaign if from a campaign,
   "campaign_name": (string) name of the campaign,
   "message_variation_id": (string) id of the message variation if from a campaign,

@@ -13,13 +13,13 @@ description: "This implementation guide covers Content Card code considerations,
 
 ### Import Statements and Helper Files
 
-When building out Content Cards, you should integrate them using a single `import Appboy-iOS-SDK` statement and helper file. This approach limits issues that arise from excessive SDK imports, making it easier to track, debug, and alter code. An example helper file can be found [here](https://github.com/braze-inc/braze-growth-shares-ios-demo-app/blob/master/Braze%20Demo/AppboyManager.swift).
+When building out Content Cards, you should integrate them using a single `import Appboy-iOS-SDK` statement and helper file. This approach limits issues that arise from excessive SDK imports, making it easier to track, debug, and alter code. An example helper file can be found [here](https://github.com/braze-inc/braze-growth-shares-ios-demo-app/blob/master/Braze-Demo/BrazeManager.swift).
 
 ### Content Cards as Custom Objects
 
 Much like a rocketship adding a booster, your own custom objects can be extended to function as Content Cards. Limited API surfaces such as this, provide flexibility to work with different data backends interchangeably. This can be done by conforming to the `ContentCardable` protocol and implementing the initializer (as seen below) and through the use of the `ContentCardData` struct, allows you to access the `ABKContentCard` data.
 
-The initializer also includes a `ContentCardClassType` enum. Through the use of key-value pairs within the Braze dashboard, you can set an explicit `class_type` key that will be used to determine what object to initialize. Once you have a solid understanding of these code considerations, check out our [use cases](#sample-use-cases) below to get started implementing your own custom objects.
+The initializer also includes a `ContentCardClassType` enum. Through the use of key value pairs within the Braze dashboard, you can set an explicit `class_type` key that will be used to determine what object to initialize. Once you have a solid understanding of these code considerations, check out our [use cases](#sample-use-cases) below to get started implementing your own custom objects.
 
 {% include video.html id="55KTZqYAl7Y" align="center" %}
 
@@ -106,7 +106,7 @@ __No `ABKContentCard` Dependencies__<br>
 {% tabs %}
 {% tab Swift %}
 __Custom Object Initializer__<br>
-MetaData from an `ABKContentCard` is used to populate your object's variables. The key-value pairs set up in the Braze Dashboard are represented in the “extras” dictionary.
+MetaData from an `ABKContentCard` is used to populate your object's variables. The key value pairs set up in the Braze Dashboard are represented in the “extras” dictionary.
 
 ```swift
 extension Tile: ContentCardable {
@@ -133,7 +133,7 @@ extension Tile: ContentCardable {
 {% endtab %}
 {% tab Objective-C %}
 __Custom Object Initializer__<br>
-MetaData from an `ABKContentCard` is used to populate your object's variables. The key-value pairs set up the Braze Dashboard are represented in the “extras” dictionary.
+MetaData from an `ABKContentCard` is used to populate your object's variables. The key value pairs set up the Braze Dashboard are represented in the “extras” dictionary.
 
 ```objc
 - (id _Nullable)initWithMetaData:(nonnull NSDictionary *)metaData classType:(enum ContentCardClassType)classType {
@@ -366,7 +366,7 @@ A semaphore is used to signal when the task is executed due to the notification 
 {% endtabs %}
 
 ### Content Cards in a Message Center
-Content Cards can be used in a message center format where each message is its own card. Each card contains additional key-value pairs that power on-click UI/UX.
+Content Cards can be used in a message center format where each message is its own card. Each card contains additional key value pairs that power on-click UI/UX.
 {% include video.html id="dmaT61p8kW8" align="center" %}
 
 {% tabs %}
@@ -512,7 +512,7 @@ The `ContentCardable` protocol handles the heavy lifting of calling the helper f
 {% tabs %}
 {% tab Swift %}
 __Call `ABKContentCard` Functions__<br>
-The [helper file](https://github.com/braze-inc/braze-growth-shares-ios-demo-app/blob/master/Braze%20Demo/AppboyManager.swift#L144) can reference Braze SDK dependencies such as the `Appboy.sharedInstance()?.contentCardsController.contentCards` array to get the `ABKContentCard` to call our logging methods.
+The [helper file](https://github.com/braze-inc/braze-growth-shares-ios-demo-app/blob/master/Braze-Demo/BrazeManager.swift#L171) can reference Braze SDK dependencies such as the `Appboy.sharedInstance()?.contentCardsController.contentCards` array to get the `ABKContentCard` to call our logging methods.
 ```swift
 func logContentCardImpression(idString: String?) {
   guard let contentCard = getContentCard(forString: idString) else { return }
@@ -527,7 +527,7 @@ private func getContentCard(forString idString: String?) -> ABKContentCard? {
 {% endtab %}
 {% tab Objective-C %}
 __Call `ABKContentCard` Functions__<br>
-The [helper file](https://github.com/braze-inc/braze-growth-shares-ios-demo-app/blob/master/Braze%20Demo/AppboyManager.swift#L144) can reference Braze SDK dependencies such as the `Appboy.sharedInstance()?.contentCardsController.contentCards` array to get the `ABKContentCard` to call our logging methods.
+The [helper file](https://github.com/braze-inc/braze-growth-shares-ios-demo-app/blob/master/Braze-Demo/BrazeManager.swift#L171) can reference Braze SDK dependencies such as the `Appboy.sharedInstance()?.contentCardsController.contentCards` array to get the `ABKContentCard` to call our logging methods.
 ```objc
 - (void)logContentCardImpression:(NSString *)idString {
   ABKContentCard *contentCard = [self getContentCard:idString];

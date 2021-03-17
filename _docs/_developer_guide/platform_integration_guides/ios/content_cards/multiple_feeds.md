@@ -9,15 +9,11 @@ page_order: 6
 
 Content Cards can be filtered on the app to only display specific cards, which enables you to have multiple Content Card feeds for different use cases (as in having a "Transactional" feed versus a "Marketing" feed).
 
-{% alert important %}
-On iOS, this feature is currently only available for fully customized UIs. Contact your Customer Success Manager if you would like to display multiple Content Card feeds using our default UI.
-{% endalert %}
-
 The following documentation demonstrates an example implementation that can be changed to fit your specific integration.
 
-## Step 1: Setting Key-Value Pairs on Cards
+## Step 1: Setting Key Value Pairs on Cards
 
-When creating a Content Card campaign, key-value pair data can be set on each Card. Our filtering logic will use this key-value pair data to categorize cards.
+When creating a Content Card campaign, key value pair data can be set on each Card. Our filtering logic will use this key-value pair data to categorize cards.
 
 For the purposes of this example, we'll set a key-value pair with the key `feed_type` that will designate which Content Card feed the card should be displayed in. The value will be whatever your custom feeds will be, as in `Transactional`, `Marketing`, and more.
 
