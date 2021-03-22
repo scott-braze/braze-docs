@@ -98,7 +98,9 @@ To learn more about JSON Web Tokens, or to browse the [many open source librarie
 
 When this feature is enabled, the Braze SDK will append the current user's last known JWT to network requests made to Braze Servers.
 
-Don't worry! You can always disable this feature from the Braze Dashboard, even if the SDK has this enabled.
+{% alert info %}
+Don't worry! Initializing with this option alone won't impact data collection in any way, until you start [enforcing authentication][4].
+{% endalert %}
 
 {% tabs %}
 {% tab Javascript %}
