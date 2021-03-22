@@ -30,7 +30,7 @@ When enabled, this feature will prevent unauthorized requests that use your app'
 
 ## Getting Started
 
-There are three high-level steps to get started:
+There are four high-level steps to get started:
 
 ### Step 1: [Server-side Integration][1]
 
@@ -44,7 +44,7 @@ Enable this feature in the Braze SDK and supply the JWT Token generated from you
 
 Add the your _public key_ to the Braze Dashboard in the "Manage App Group" page.
 
-### Step 3: [Toggle Enforcement within the Braze Dashboard][4]
+### Step 4: [Toggle Enforcement within the Braze Dashboard][4]
 
 Toggle this feature's enforcement within the Braze Dashboard on an app-by-app basis.
 
