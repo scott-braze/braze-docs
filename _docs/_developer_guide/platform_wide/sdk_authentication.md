@@ -229,6 +229,21 @@ TODO:
 
 {: .reset-td-br-1 .reset-td-br-2}
 
+## Adding Public Keys {#key-management}
+
+In the "Manage App Group" page, add your Public Key to a specific app in the Braze Dashboard. Each app supports up to 3 Public Keys.
+
+Note: The same Public/Private keys may be used across apps.
+
+To add a Public Key:
+
+1. Choose the app in the left-hand side menu
+2. Click the **Add Public Key** button within the SDK Authentication settings
+3. Paste in the Public Key, and add an optional description
+4. After saving your changes, the key will appear in the list of Public Keys.
+
+To delete a key, or to promote a key to the Primary key, choose the corresponding action in the overflow menu next to each key.
+
 ## Enabling in the Braze Dashboard {#braze-dashboard}
 
 Once your [Server-side Integration][1] and [SDK Integration][2] are complete, you can begin to enable this feature for those specific apps.
@@ -293,6 +308,7 @@ Instead, we use Private Keys so that not even Braze Employees (let alone your ow
 
 [1]: #server-side-integration
 [2]: #sdk-integration
+[3]: #key-management
 [4]: #braze-dashboard
 [4]: #create-jwt
 [5]: #todo
