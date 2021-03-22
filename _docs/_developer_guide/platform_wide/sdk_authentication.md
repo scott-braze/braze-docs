@@ -216,9 +216,7 @@ todo
 {% endtab %}
 {% endtabs %}
 
-The `errorEvent` data passed to this callback will contain the following information:
-
-TODO:
+The `errorEvent` argument passed to this callback will contain the following information:
 
 | Property   | Description                                |
 | ---------- | ------------------------------------------ |
