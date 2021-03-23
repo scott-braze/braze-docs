@@ -126,7 +126,25 @@ Appboy.configure(this, appboyConfigBuilder.build());
 
 {% endtab %}
 {% tab Obj-C %}
-todo
+
+```objective-c
+[Appboy startWithApiKey:@"YOUR-API-KEY"
+            inApplication:application
+        withLaunchOptions:launchOptions
+        withAppboyOptions:@{ABKEnableSDKAuthenticationKey : @YES}];
+```
+
+{% endtab %}
+
+{% tab Swift %}
+
+```swift
+Appboy.start(withApiKey: "YOUR-API-KEY",
+                 in:application,
+                 withLaunchOptions:launchOptions,
+                 withAppboyOptions:[ ABKEnableSDKAuthenticationKey : true ])
+```
+
 {% endtab %}
 {% endtabs %}
 
@@ -170,7 +188,34 @@ Appboy.getInstance(this).setSdkAuthenticationSignature("NEW-JWT-TOKEN-FROM-SERVE
 
 {% endtab %}
 {% tab Obj-C %}
-todo
+
+Supply the JWT Token when calling `changeUser`:
+
+```objective-c
+[[Appboy sharedInstance] changeUser:@"userId" sdkAuthSignature:@"signature"];
+```
+
+Or, when you have refreshed the user's token mid-session:
+
+```objective-c
+[[Appboy sharedInstance] setSdkAuthenticationSignature:@"signature"];
+```
+
+{% endtab %}
+{% tab Swift %}
+
+Supply the JWT Token when calling `changeUser`:
+
+```swift
+Appboy.sharedInstance()?.changeUser("userId", sdkAuthSignature: "signature")
+```
+
+Or, when you have refreshed the user's token mid-session:
+
+```swift
+Appboy.sharedInstance()?.setSdkAuthenticationSignature("signature")
+```
+
 {% endtab %}
 {% endtabs %}
 
@@ -214,8 +259,34 @@ Appboy.getInstance(this).subscribeToSdkAuthenticationFailures(errorEvent -> {
 
 {% endtab %}
 {% tab Obj-C %}
-todo
+
+```objective-c
+[[Appboy sharedInstance] setSdkAuthenticationDelegate:delegate];
+
+// Method to implement in delegate
+- (void)handleSdkAuthenticationError:(ABKSdkAuthenticationError *)authError {
+  NSLog(@"Invalid SDK Authentication signature.");
+  [[Appboy sharedInstance] setSdkAuthenticationSignature:@"signature"];
+}
+```
+
 {% endtab %}
+
+{% tab Swift %}
+
+```swift
+Appboy.sharedInstance()?.setSdkAuthenticationDelegate(delegate)
+
+// Method to implement in delegate
+func handle(_ authError: ABKSdkAuthenticationError?) {
+        print("Invalid SDK Authentication signature.")
+        Appboy.sharedInstance()?.setSdkAuthenticationSignature("signature")
+    }
+
+```
+
+{% endtab %}
+
 {% endtabs %}
 
 The `errorEvent` argument passed to this callback will contain the following information:
