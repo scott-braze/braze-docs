@@ -99,7 +99,7 @@ To learn more about JSON Web Tokens, or to browse the [many open source librarie
 When this feature is enabled, the Braze SDK will append the current user's last known JWT to network requests made to Braze Servers.
 
 {% alert info %}
-Don't worry! Initializing with this option alone won't impact data collection in any way, until you start [enforcing authentication][4].
+Don't worry! Initializing with this option alone won't impact data collection in any way, until you start [enforcing authentication](#braze-dashboard).
 {% endalert %}
 
 {% tabs %}
@@ -125,9 +125,9 @@ Appboy.configure(this, appboyConfigBuilder.build());
 ```
 
 {% endtab %}
-{% tab Obj-C %}
+{% tab Objective-C %}
 
-```objective-c
+```objc
 [Appboy startWithApiKey:@"YOUR-API-KEY"
             inApplication:application
         withLaunchOptions:launchOptions
@@ -187,17 +187,17 @@ Appboy.getInstance(this).setSdkAuthenticationSignature("NEW-JWT-TOKEN-FROM-SERVE
 ```
 
 {% endtab %}
-{% tab Obj-C %}
+{% tab Objective-C %}
 
 Supply the JWT Token when calling `changeUser`:
 
-```objective-c
+```objc
 [[Appboy sharedInstance] changeUser:@"userId" sdkAuthSignature:@"signature"];
 ```
 
 Or, when you have refreshed the user's token mid-session:
 
-```objective-c
+```objc
 [[Appboy sharedInstance] setSdkAuthenticationSignature:@"signature"];
 ```
 
@@ -258,9 +258,9 @@ Appboy.getInstance(this).subscribeToSdkAuthenticationFailures(errorEvent -> {
 ```
 
 {% endtab %}
-{% tab Obj-C %}
+{% tab Objective-C %}
 
-```objective-c
+```objc
 [[Appboy sharedInstance] setSdkAuthenticationDelegate:delegate];
 
 // Method to implement in delegate
