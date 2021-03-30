@@ -9,20 +9,15 @@ platform:
   - web
 ---
 
-# SDK Authentication
-
-SDK Authentication ensures that no one can impersonate or create Braze users using your SDK API Keys.
-
 {% alert important %}
 This feature is in _beta_ and only available for Android, Web, and iOS SDKs.
 {% endalert %}
 
-## How It Works
+# SDK Authentication
 
-Braze SDKs, like other client-side libraries, use a public API key to identify your app. In order to ensure that Braze only trusts requests from authenticated users, this feature allows _you_ to supply Braze with secure, cryptographic proof. After all, your server is the only one who would know whether a user is who they claim to be in your app (using cookies or other persistent session data).
+SDK Authentication ensures that no one can impersonate or create Braze users using your SDK API Keys. Braze SDKs, like other client-side libraries, use a public API key to identify your app. To ensure that Braze only trusts requests from authenticated users, this feature allows _you_ to supply Braze with secure, cryptographic proof. After all, your server is the only one who would know whether a user is who they claim to be in your app (using cookies or other persistent session data).
 
 When enabled, this feature will prevent unauthorized requests that use your app's SDK API Keys for logged in users, including:
-
 - Sending custom events, attributes, purchases, and session data
 - Creating new users in your Braze App Group
 - Updating standard user profile attributes
@@ -32,37 +27,26 @@ When enabled, this feature will prevent unauthorized requests that use your app'
 
 There are four high-level steps to get started:
 
-### Step 1: [Server-side Integration][1]
-
-Generate a public and private key-pair, and use your _private_ key to create a JWT (_JSON Web Token_) for the current logged-in user.
-
-### Step 2: [SDK Integration][2]
-
-Enable this feature in the Braze SDK and supply the JWT Token generated from your server.
-
-### Step 3: [Adding Public Keys][3]
-
-Add the your _public key_ to the Braze Dashboard in the "Manage App Group" page.
-
-### Step 4: [Toggle Enforcement within the Braze Dashboard][4]
-
-Toggle this feature's enforcement within the Braze Dashboard on an app-by-app basis.
+1. [Server-Side Integration][1] - Generate a public and private key-pair, and use your private key to create a JWT (_JSON Web Token_) for the current logged-in user.<br><br>
+2. [SDK Integration][2] - Enable this feature in the Braze SDK and supply the JWT Token generated from your server.<br><br>
+3. [Adding Public Keys][3] - Add your _public key_ to the Braze Dashboard in the "Manage App Group" page.<br><br>
+4. [Toggle Enforcement within the Braze Dashboard]({{site.baseurl}}/developer_guide/platform_wide/sdk_authentication/#braze-dashboard) - Toggle this feature's enforcement within the Braze Dashboard on an app-by-app basis.
 
 ## Server-Side Integration {#server-side-integration}
 
 ### Generate a Public/Private Key-pair {#generate-keys}
 
-Generate an RSA public/private key-pair. The Public Key will eventually be added into the Braze Dashboard, while the Private Key should be stored securely on your server.
+Generate an RSA public/private key-pair. The Public Key will eventually be added to the Braze Dashboard, while the Private Key should be stored securely on your server.
 
 We recommend an RSA Key with 2048 bits for use with the RS256 JWT algorithm.
 
 {% alert warning %}
-Remember! Keep your private keys _private_. Never expose or hard-code your _private_ key in your app or website. Anyone who knows your private key can impersonate or create users on behalf of your application.
+Remember to keep your private keys _private_. Never expose or hard-code your private key in your app or website. Anyone who knows your private key can impersonate or create users on behalf of your application.
 {% endalert %}
 
 ### Create a JSON Web Token for the current user {#create-jwt}
 
-Once you have your _private key_, your server-side application should use it to return a JWT to your app or website for the currently logged-in user.
+Once you have your private key, your server-side application should use it to return a JWT to your app or website for the currently logged-in user.
 
 Typically, this logic could go wherever your app would normally request the current user's profile; such as a login endpoint or wherever your app refreshes the current user's profile.
 
@@ -98,53 +82,43 @@ To learn more about JSON Web Tokens, or to browse the [many open source librarie
 
 When this feature is enabled, the Braze SDK will append the current user's last known JWT to network requests made to Braze Servers.
 
-{% alert info %}
-Don't worry! Initializing with this option alone won't impact data collection in any way, until you start [enforcing authentication](#braze-dashboard).
+{% alert note %}
+Don't worry, initializing with this option alone won't impact data collection in any way, until you start [enforcing authentication](#braze-dashboard).
 {% endalert %}
 
 {% tabs %}
 {% tab Javascript %}
 When calling `appboy.initialize`, set the optional `sdkAuthentication` property to `true`.
-
 ```javascript
 appboy.initialize("YOUR-API-KEY-HERE", {
   baseUrl: "YOUR-SDK-ENDPOINT-HERE",
   sdkAuthentication: true,
 });
 ```
-
 {% endtab %}
 {% tab Java %}
-
 When configuring the Appboy instance, call `setIsSdkAuthenticationEnabled` to `true`.
-
 ```java
 AppboyConfig.Builder appboyConfigBuilder = new AppboyConfig.Builder()
     .setIsSdkAuthenticationEnabled(true);
 Appboy.configure(this, appboyConfigBuilder.build());
 ```
-
 {% endtab %}
 {% tab Objective-C %}
-
 ```objc
 [Appboy startWithApiKey:@"YOUR-API-KEY"
             inApplication:application
         withLaunchOptions:launchOptions
         withAppboyOptions:@{ABKEnableSDKAuthenticationKey : @YES}];
 ```
-
 {% endtab %}
-
 {% tab Swift %}
-
 ```swift
 Appboy.start(withApiKey: "YOUR-API-KEY",
                  in:application,
                  withLaunchOptions:launchOptions,
                  withAppboyOptions:[ ABKEnableSDKAuthenticationKey : true ])
 ```
-
 {% endtab %}
 {% endtabs %}
 
@@ -156,7 +130,6 @@ You can also update the token to refresh the token mid-session.
 
 {% tabs %}
 {% tab Javascript %}
-
 Supply the JWT Token when calling `appboy.changeUser`:
 
 ```javascript
@@ -170,7 +143,6 @@ Or, when you have refreshed the user's token mid-session:
 ```javascript
 appboy.setAuthenticationToken("NEW-JWT-TOKEN-FROM-SERVER");
 ```
-
 {% endtab %}
 {% tab Java %}
 
@@ -185,7 +157,6 @@ Or, when you have refreshed the user's token mid-session:
 ```java
 Appboy.getInstance(this).setSdkAuthenticationSignature("NEW-JWT-TOKEN-FROM-SERVER");
 ```
-
 {% endtab %}
 {% tab Objective-C %}
 
@@ -200,7 +171,6 @@ Or, when you have refreshed the user's token mid-session:
 ```objc
 [[Appboy sharedInstance] setSdkAuthenticationSignature:@"signature"];
 ```
-
 {% endtab %}
 {% tab Swift %}
 
@@ -209,20 +179,17 @@ Supply the JWT Token when calling `changeUser`:
 ```swift
 Appboy.sharedInstance()?.changeUser("userId", sdkAuthSignature: "signature")
 ```
-
 Or, when you have refreshed the user's token mid-session:
 
 ```swift
 Appboy.sharedInstance()?.setSdkAuthenticationSignature("signature")
 ```
-
 {% endtab %}
 {% endtabs %}
 
 ### Register a callback function for invalid tokens {#sdk-callback}
 
 When this feature is set as ["Required"](#enforcement-options), the following scenarios will cause SDK requests to be rejected by Braze:
-
 - JWT was expired by the time is was received by the Braze API
 - JWT was empty or missing
 - JWT failed to verify for the Public Keys you uploaded to the Braze Dashboard
@@ -237,7 +204,6 @@ These callback methods are a great place to add your own monitoring or error-log
 
 {% tabs %}
 {% tab Javascript %}
-
 ```javascript
 appboy.onSdkAuthenticationFailure(async (errorEvent) => {
   const updated_jwt = await getNewTokenSomehow(errorEvent);
@@ -245,10 +211,8 @@ appboy.onSdkAuthenticationFailure(async (errorEvent) => {
   appboy.setAuthenticationToken(updated_jwt);
 });
 ```
-
 {% endtab %}
 {% tab Java %}
-
 ```java
 Appboy.getInstance(this).subscribeToSdkAuthenticationFailures(errorEvent -> {
     String newToken = getNewTokenSomehow(errorEvent);
@@ -256,10 +220,8 @@ Appboy.getInstance(this).subscribeToSdkAuthenticationFailures(errorEvent -> {
     Appboy.getInstance(getContext()).setSdkAuthenticationSignature(newToken);
 });
 ```
-
 {% endtab %}
 {% tab Objective-C %}
-
 ```objc
 [[Appboy sharedInstance] setSdkAuthenticationDelegate:delegate];
 
@@ -269,11 +231,8 @@ Appboy.getInstance(this).subscribeToSdkAuthenticationFailures(errorEvent -> {
   [[Appboy sharedInstance] setSdkAuthenticationSignature:@"signature"];
 }
 ```
-
 {% endtab %}
-
 {% tab Swift %}
-
 ```swift
 Appboy.sharedInstance()?.setSdkAuthenticationDelegate(delegate)
 
@@ -284,30 +243,24 @@ func handle(_ authError: ABKSdkAuthenticationError?) {
     }
 
 ```
-
 {% endtab %}
-
 {% endtabs %}
 
 The `errorEvent` argument passed to this callback will contain the following information:
 
-| Property   | Description                                |
-| ---------- | ------------------------------------------ |
-| reason     | A description of why the request failed.   |
-| error_code | An internal error code used by Braze.      |
-| user_id    | The user ID from which the request failed. |
-| signature  | The JWT which failed.                      |
-
+| Property | Description |
+| -------- | ----------- |
+| `reason` | A description of why the request failed. |
+| `error_code` | An internal error code used by Braze. |
+| `user_id` | The user ID from which the request failed. |
+| `signature` | The JWT that failed.|
 {: .reset-td-br-1 .reset-td-br-2}
 
 ## Adding Public Keys {#key-management}
 
-In the "Manage App Group" page, add your Public Key to a specific app in the Braze Dashboard. Each app supports up to 3 Public Keys.
-
-Note: The same Public/Private keys may be used across apps.
+In the "Manage App Group" page of the dashboard, add your Public Key to a specific app in the Braze Dashboard. Each app supports up to 3 Public Keys. Note that the same Public/Private keys may be used across apps.
 
 To add a Public Key:
-
 1. Choose the app in the left-hand side menu
 2. Click the **Add Public Key** button within the SDK Authentication settings
 3. Paste in the Public Key, and add an optional description
@@ -329,12 +282,11 @@ In the Dashboard `App Settings` page, each app has three SDK Authentication stat
 
 ![dashboard][8]
 
-| Setting      | Description                                                                           |
-| ------------ | ------------------------------------------------------------------------------------- |
-| **Disabled** | Braze will not verify the JWT supplied for a user. (Default Setting)                  |
+| Setting| Description|
+| ------ | ---------- |
+| **Disabled** | Braze will not verify the JWT supplied for a user. (Default Setting)|
 | **Optional** | Braze will verify requests for logged-in users, but will not reject invalid requests. |
-| **Required** | Braze will verify requests for logged-in users, and will reject invalid JWTs.         |
-
+| **Required** | Braze will verify requests for logged-in users and will reject invalid JWTs.|
 {: .reset-td-br-1 .reset-td-br-2}
 
 The "**Optional**" setting is a useful way to monitor the potential impact this feature will have on your app's SDK traffic.
@@ -373,9 +325,9 @@ Once disabled, any pending failed SDK requests will eventually be retried by the
 
 #### Why does this feature use Public/Private keys instead of Shared Secrets?
 
-When using Shared Secrets, anyone with access to that shared secret (i.e. the Braze Dashboard page) would be able to generate tokens and impersonate your end users.
+When using Shared Secrets, anyone with access to that shared secret (i.e. the Braze Dashboard page) would be able to generate tokens and impersonate your end-users.
 
-Instead, we use Private Keys so that not even Braze Employees (let alone your own Dashboard users) could possibly discover your Private Keys.
+Instead, we use private Keys so that not even Braze Employees (let alone your Dashboard users) could discover your private Keys.
 
 [1]: #server-side-integration
 [2]: #sdk-integration
@@ -385,5 +337,4 @@ Instead, we use Private Keys so that not even Braze Employees (let alone your ow
 [5]: #todo
 [6]: #enforcement-options
 [7]: #sdk-callback
-
 [8]: {% image_buster /assets/img/sdk-auth-settings.png %}
